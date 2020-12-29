@@ -22,7 +22,7 @@ async def on_message(message):
     for server in client.guilds:
         for channel in server.channels:
             if channel in server.text_channels:
-                text_channel_list.append(channel.id)
+                text_channel_list.append(channel)
 
     if message.content.startswith(CMDCHAR) and message.author != client.user:
         cmd, *args = message.content[1:].split(' ')
