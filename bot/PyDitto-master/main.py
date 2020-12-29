@@ -19,10 +19,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     text_channel_list = []
-    for server in Client.servers:
+    for server in client.guilds:
         for channel in server.channels:
-            if channel.type == 'Text':
-                text_channel_list.append(channel)
+            if channel in server.text_channels:
+                text_channel_list.append(channel.id)
 
     if message.content.startswith(CMDCHAR) and message.author != client.user:
         cmd, *args = message.content[1:].split(' ')
@@ -32,8 +32,8 @@ async def on_message(message):
             print(files, cmd_file)
             if cmd_file in files:
                 module = _import('Commands.' + cmd)
-                for channel in text_channel_list:
-                    await getattr(module, cmd)(client, channel, *args)
+                for c in text_channel_list:
+                    await getattr(module, cmd)(client, c, *args)
                 break
 
 

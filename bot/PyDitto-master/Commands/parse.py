@@ -25,4 +25,4 @@ async def parse(client, channel, *args):
 
     except Exception as e:
         print(e)
-        return await channel.send('This channel has already been parsed.')
+        return 0
