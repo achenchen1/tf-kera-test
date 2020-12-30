@@ -13,6 +13,7 @@ class_names = ["Apple", "Banana", "Chip", "Coin", "DragonScale", "EpicCoin", "Ep
 
 img_height = 80
 img_width = 375
+batch_size = 16
 
 data_dir = "Parsed/images"
 
@@ -20,17 +21,17 @@ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     data_dir,
     validation_split=0.2,
     subset="training",
-    seed=123,
+    seed=207,
     image_size=(img_height, img_width),
-    batch_size=32)
+    batch_size=batch_size)
 
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
     data_dir,
     validation_split=0.2,
     subset="validation",
-    seed=123,
+    seed=207,
     image_size=(img_height, img_width),
-    batch_size=32)
+    batch_size=batch_size)
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 
