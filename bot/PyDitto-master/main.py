@@ -34,7 +34,8 @@ async def on_message(message):
                 module = _import('Commands.' + cmd)
                 for c in text_channel_list:
                     await getattr(module, cmd)(client, c, *args)
+                print("Done")
                 break
 
 
-client.run('NzkzMzkxODE5MTA2NTQ5Nzcx.X-rltg.3y5s9x5Ey60x2aO6ocdbDwVFIMI')
+client.run('NzkzMzkxODE5MTA2NTQ5Nzcx.X-rltg.-nrGD9-zHzOKgU0kVsR4Z9xESz8')

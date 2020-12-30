@@ -4,7 +4,7 @@ async def parse(client, channel, *args):
     try:
         path = './Parsed/%s' % channel.id
         os.makedirs(path)
-        await channel.send('Beginning parsing of channel logs.')
+        # await channel.send('Beginning parsing of channel logs.')
 
         opened_files = dict()
         async for message in channel.history(limit=None):
@@ -21,7 +21,8 @@ async def parse(client, channel, *args):
                     else:
                         for author, file in opened_files.items():
                             file.close()
-                        return await channel.send('Finished parsing.')
+                        return 0
+                        # return await channel.send('Finished parsing.')
 
     except Exception as e:
         print(e)
