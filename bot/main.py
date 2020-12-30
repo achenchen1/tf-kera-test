@@ -38,4 +38,4 @@ async def on_message(message):
                 break
 
 
-client.run('NzkzMzkxODE5MTA2NTQ5Nzcx.X-rltg.-nrGD9-zHzOKgU0kVsR4Z9xESz8')
+client.run('NzkzMzkxODE5MTA2NTQ5Nzcx.X-rltg.FBZFW_EcI9i9uc2zgF4ZHY-OYZw')
