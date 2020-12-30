@@ -86,11 +86,11 @@ val_loss = history.history['val_loss']
 
 processed = 0
 
-for f in os.listdir("Parsed/new_imgs"):
+for f in os.listdir("images"):
     if f[-3:] != "png":
         continue
 
-    lp_path = os.path.join("Parsed/new_imgs", f)
+    lp_path = os.path.join("images", f)
 
     img = keras.preprocessing.image.load_img(
         lp_path, target_size=(img_height, img_width)
@@ -101,7 +101,7 @@ for f in os.listdir("Parsed/new_imgs"):
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
 
-    if np.max(score) > 0.75:
+    if np.max(score) > 0.85:
         print(
             "Image {} most likely belongs to {} with a {:.2f} percent confidence."
             .format(f, class_names[np.argmax(score)], 100 * np.max(score))
