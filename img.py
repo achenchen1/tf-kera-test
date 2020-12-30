@@ -9,7 +9,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
 
-class_names = ["Apple", "Banana", "Chip", "Coin", "Dragon Scale", "Epic Coin", "Epic Fish", "Golden Fish", "Life Potion", "Mermaid Hair", "Normie Fish", "Ruby", "Unicorn Horn", "Wolf Skin", "Zombie Eye"]
+class_names = ["Apple", "Banana", "Chip", "Coin", "DragonScale", "EpicCoin", "EpicFish", "GoldenFish", "LifePotion", "MermaidHair", "NormieFish", "Ruby", "UnicornHorn", "WolfSkin", "ZombieEye"]
 
 img_height = 80
 img_width = 375
@@ -84,18 +84,26 @@ val_acc = history.history['val_accuracy']
 loss = history.history['loss']
 val_loss = history.history['val_loss']
 
-lp_path = "epic_guard.png"
+processed = 0
 
-img = keras.preprocessing.image.load_img(
-    lp_path, target_size=(img_height, img_width)
-)
-img_array = keras.preprocessing.image.img_to_array(img)
-img_array = tf.expand_dims(img_array, 0) # Create a batch
+for f in os.listdir():
+    if f[-3:] != "png":
+        continue
 
-predictions = model.predict(img_array)
-score = tf.nn.softmax(predictions[0])
+    lp_path = f
 
-print(
-    "This image most likely belongs to {} with a {:.2f} percent confidence."
-    .format(class_names[np.argmax(score)], 100 * np.max(score))
-)
+    img = keras.preprocessing.image.load_img(
+        lp_path, target_size=(img_height, img_width)
+    )
+    img_array = keras.preprocessing.image.img_to_array(img)
+    img_array = tf.expand_dims(img_array, 0) # Create a batch
+
+    predictions = model.predict(img_array)
+    score = tf.nn.softmax(predictions[0])
+
+    if np.max(score) > 0.75:
+        print(
+            "Image {} most likely belongs to {} with a {:.2f} percent confidence."
+            .format(f, class_names[np.argmax(score)], 100 * np.max(score))
+        )
+        os.rename(f, path.join(class_names[np.argmax(score)], f))
