@@ -86,11 +86,11 @@ val_loss = history.history['val_loss']
 
 processed = 0
 
-for f in os.listdir():
+for f in os.listdir("Parsed/new_imgs"):
     if f[-3:] != "png":
         continue
 
-    lp_path = f
+    lp_path = os.path.join("Parsed/new_imgs", f)
 
     img = keras.preprocessing.image.load_img(
         lp_path, target_size=(img_height, img_width)
@@ -106,4 +106,7 @@ for f in os.listdir():
             "Image {} most likely belongs to {} with a {:.2f} percent confidence."
             .format(f, class_names[np.argmax(score)], 100 * np.max(score))
         )
-        os.rename(f, path.join(class_names[np.argmax(score)], f))
+        os.rename(lp_path, os.path.join("Parsed/images", class_names[np.argmax(score)], f))
+        processed += 1
+
+print("Processed {} images.".format(processed))
