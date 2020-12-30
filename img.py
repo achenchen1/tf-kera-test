@@ -11,8 +11,8 @@ from tensorflow.keras.models import Sequential
 
 class_names = ["Apple", "Banana", "Chip", "Coin", "Dragon Scale", "Epic Coin", "Epic Fish", "Golden Fish", "Life Potion", "Mermaid Hair", "Normie Fish", "Ruby", "Unicorn Horn", "Wolf Skin", "Zombie Eye"]
 
-img_height = 180
-img_width = 400
+img_height = 80
+img_width = 375
 
 data_dir = "Parsed/images"
 
