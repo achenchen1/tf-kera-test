@@ -9,7 +9,9 @@ client = discord.Client()
 
 CMDCHAR = '!'
 COMMAND_PATH = os.path.join(os.path.dirname(__file__), 'Commands')
-
+token = None
+with open('token.cfg', 'r') as f:
+    token = f.read().strip()
 
 @client.event
 async def on_ready():
@@ -38,4 +40,4 @@ async def on_message(message):
                 break
 
 
-client.run('NzkzMzkxODE5MTA2NTQ5Nzcx.X-rltg.FBZFW_EcI9i9uc2zgF4ZHY-OYZw')
+client.run(token)
